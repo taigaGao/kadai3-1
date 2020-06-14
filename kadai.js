@@ -1,4 +1,3 @@
-
 window.onload = function () {
     // タスクリストの作成(配列)
     const taskList = [];
@@ -10,6 +9,7 @@ window.onload = function () {
     // inputボタンの値を受け取る
     const addTask = (taskValue) => {
         const task = {
+            'ID':taskList.length,
             'コメント':taskValue,
             '状態':0
         };
@@ -30,13 +30,16 @@ window.onload = function () {
         // タスクの内容(taskValue)をタスクの追加関数(addTask)に渡す
         addTask(taskValue);
 
+        // フォームの内容をからにする
+        document.getElementById('task').value = '';
+
         // タスクリスト(配列)が所持する全タスクをhtmlに追加する
         for (let i = 0; i < taskList.length; i++) {
             const tr = document.createElement('tr');
             listArea.appendChild(tr);
 
             const td_id = document.createElement('td');
-            listArea.lastElementChild.appendChild(td_id).textContent = i;
+            listArea.lastElementChild.appendChild(td_id).textContent = taskList[i]['ID'];
 
             const td_task = document.createElement('td');
             listArea.lastElementChild.appendChild(td_task);
